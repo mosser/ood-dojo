@@ -1,10 +1,10 @@
 .DEFAULT_GOAL := all
 
 PUML = java -jar ./bin/plantuml.jar
-PICS = $(patsubst figs/%.puml, figs/%.png, $(wildcard figs/*.puml))
+PICS = $(patsubst src/%.puml, figs/%.png, $(wildcard src/*.puml))
 
-figs/%.png: figs/%.puml
-	$(PUML) $< $@
+figs/%.png: src/%.puml
+	$(PUML) ./$< -o ../figs
 
 clean:
 	rm -rf figs/*.png
