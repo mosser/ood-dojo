@@ -8,11 +8,11 @@
 
 ## Initial Use Case Diagram
 
-<p align="center">
+<div align="center">
 
 ![Initial use case diagram](./figs/01_uc.png)
 
-</p>  
+</div>  
 
 ## Domain Model
 
