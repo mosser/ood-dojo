@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Employee
+actor Manager
+actor Member
+
+Employee <|- Manager
+Employee <|- Member
+
+rectangle PMS {
+  Employee --> (Generate a report)
+  Employee --> (Create a new task)
+  Manager  --> (Assign a Task)
+  Manager  --> (Create a new project)
+  Member   --> (Make progress on a task)
+}
+
+@enduml

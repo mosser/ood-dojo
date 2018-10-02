@@ -1,0 +1,18 @@
+@startuml
+
+hide members
+
+class Portfolio
+class Project
+class Task
+class Manager
+class Member
+class Report
+
+Portfolio -- Project
+Project -- Task
+Project -- Report
+Project -- Manager
+Task -- Member
+
+@enduml

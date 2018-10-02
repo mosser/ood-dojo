@@ -1,0 +1,46 @@
+@startuml
+
+hide footbox
+title Create a new Project (checking availability)
+
+actor Manager as M
+participant ":Portfolio" as P
+
+M -> P: create(pName, mgrId)
+activate P
+
+P -> P: isAvailable(pName)
+note right
+  def isAvailable(n: String): Boolean {
+    return findByName(n) != null
+  }
+end note
+
+alt available
+
+  create "m: Manager" as Mgr #D3D3D3
+  P -> Mgr: new(mgrId)
+  activate Mgr
+  Mgr -> Mgr: check()
+  Mgr --> P: m
+  deactivate Mgr
+
+  create "p: Project" as Proj
+  P -> Proj: new(m, pName)
+  Proj --> P: p
+
+  P -> P: addToPortfolio(p)
+  activate P
+  P -> Proj: save()
+  activate Proj
+  Proj --> P: true
+  deactivate Proj
+  deactivate P
+  P --> M: true
+  deactivate P
+
+else !available
+  P --> M: false
+end
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+
+hide members
+
+skinparam class {
+  backgroundColor<<external>> #D3D3D3
+}
+hide stereotypes
+
+class Portfolio
+class Project
+class Task
+class Manager <<external>>
+class Member <<external>>
+class Report
+
+Portfolio "1" *-- "*" Project
+Project "1" *-- "*" Task
+Report . Project
+Project "*" - "1" Manager
+Task "*" -- "0..1" Member
+
+@enduml

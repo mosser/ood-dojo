@@ -1,0 +1,41 @@
+@startuml
+
+hide footbox
+title Create a new Project (checking availability)
+
+actor Manager as M
+participant ":Portfolio" as P
+
+M -> P: create(pName, mgrId)
+activate P
+
+P -> P: <font color="#0000FF"><b>p = findByName(pName)</b>
+
+alt <font color="#0000FF"><b>p == null</b>
+
+  create "m: Manager" as Mgr #D3D3D3
+  P -> Mgr: new(mgrId)
+  activate Mgr
+  Mgr -> Mgr: check()
+  Mgr --> P: m
+  deactivate Mgr
+
+  create "p: Project" as Proj
+  P -> Proj: new(m, pName)
+  Proj --> P: p
+
+  P -> P: addToPortfolio(p)
+  activate P
+  P -> Proj: save()
+  activate Proj
+  Proj --> P: true
+  deactivate Proj
+  deactivate P
+  P --> M: true
+  deactivate P
+
+else <font color="#0000FF"><b>p != null</b>
+  P -[#0000FF]-> M: <font color="#0000FF"><b>false</b>
+end
+
+@enduml
