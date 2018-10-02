@@ -10,7 +10,7 @@
 
 <p align="center">
 
-![Initial use case diagram](./figs/uc.png)
+![Initial use case diagram](./figs/01_uc.png)
 
 </p>  
 
