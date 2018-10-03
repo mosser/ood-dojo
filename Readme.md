@@ -114,7 +114,7 @@
 
 <div align="center">
 
-![Initial use case diagram](./figs/06_2_updated.png)
+![Initial use case diagram](./figs/06_2_cd_updated.png)
 
 </div>  
 
