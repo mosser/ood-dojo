@@ -1,0 +1,55 @@
+@startuml
+
+skinparam nodesep 60
+skinparam ranksep 60
+
+skinparam class {
+  backgroundColor<<external>> #D3D3D3
+}
+hide stereotypes
+
+class Portfolio {
+  ~ {static} findByName(String): Project
+  + create(String, String): Boolean
+  - addToPortfolio(Project): Boolean
+  - isAvailable(String): Boolean
+}
+
+class Project {
+  + name: String
+  + Project(String)
+  + save(): Boolean
+}
+
+class Task {
+  - status: Status
+  + start()
+  + stop()
+  + finish()
+  + save(): Boolean
+}
+
+enum Status {
+  READY
+  IN_PROGRESS
+  DONE
+}
+
+class Manager <<external>>
+class Member <<external>>
+abstract class Employee <<external>> {
+  + employeeId: String
+  + check(): Boolean
+}
+Employee <|-- Manager
+Employee <|-- Member
+
+class Report
+
+Portfolio "1" *-- "*" Project
+Project "1" *-- "*" Task
+Project . Report
+Member "0..1" - "*" Task
+Manager "1" - "*" Project
+
+@enduml

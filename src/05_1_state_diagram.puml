@@ -1,0 +1,8 @@
+@startuml
+hide empty description
+[*] -up-> Ready: create()
+Ready -right-> InProgress: start()
+InProgress -left-> Ready: stop()
+InProgress -down-> Finished: finish()
+Finished -left-> [*]
+@enduml
