@@ -1,6 +1,5 @@
 @startuml
 left to right direction
-skinparam packageStyle rectangle
 
 actor Employee
 actor Manager
@@ -10,12 +9,13 @@ actor HR <<System>>
 Employee <|- Manager
 Employee <|- Member
 
-rectangle PMS {
+rectangle "Project Management System" {
   Employee --> (Generate a report)
   Employee --> (Create a new task)
-  Manager  --> (Assign a Task)
+  Employee --> (Assign a Task)
   (Assign a Task) -- HR
   Manager  --> (Create a new project)
+  (Create a new project) -- HR
   Member   --> (Make progress on a task)
 }
 

@@ -9,4 +9,7 @@ figs/%.png: src/%.puml
 clean:
 	rm -rf figs/*.png
 
+testenv:
+	$(PUML) -testdot
+
 all: $(PICS)

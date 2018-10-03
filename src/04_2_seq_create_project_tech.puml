@@ -9,33 +9,35 @@ participant ":Portfolio" as P
 M -> P: create(pName, mgrId)
 activate P
 
-P -> P: <font color="#0000FF"><b>p = findByName(pName)</b>
+P -> P: <font color="#FF0000"><b>p = findByName(pName)</b>
 
-alt <font color="#0000FF"><b>p == null</b>
+alt <font color="#FF0000"><b>p == null</b></font>
 
-  create "m: Manager" as Mgr #D3D3D3
-  P -> Mgr: new(mgrId)
-  activate Mgr
-  Mgr -> Mgr: check()
-  Mgr --> P: m
-  deactivate Mgr
+    create "m: Manager" as Mgr #D3D3D3
+    P -> Mgr: new(mgrId)
+    activate Mgr
+    Mgr --> P: m
+    deactivate Mgr
+    create "p: Project" as Proj
+    P -> Proj: new(m, pName)
+    activate Proj
+    Proj --> P: p
+    deactivate Proj
+    P -> P: addToPortfolio(p)
+    activate P
+    P -> Proj: save()
+    activate Proj
+    Proj -> Mgr: check()
+    activate Mgr
+    Mgr --> Proj: true
+    deactivate Mgr
+    Proj --> P: true
+    deactivate Proj
+    P --> M: true
+    deactivate P
 
-  create "p: Project" as Proj
-  P -> Proj: new(m, pName)
-  Proj --> P: p
-
-  P -> P: addToPortfolio(p)
-  activate P
-  P -> Proj: save()
-  activate Proj
-  Proj --> P: true
-  deactivate Proj
-  deactivate P
-  P --> M: true
-  deactivate P
-
-else <font color="#0000FF"><b>p != null</b>
-  P -[#0000FF]-> M: <font color="#0000FF"><b>false</b>
+else <font color="#FF0000"><b>p != null</b></font>
+  P -[#FF0000]-> M: <font color="#FF0000"><b>false</b>
 end
 
 @enduml

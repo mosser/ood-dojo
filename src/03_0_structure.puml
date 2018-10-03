@@ -1,5 +1,7 @@
 @startuml
 
+skinparam nodesep 60
+skinparam ranksep 60
 hide members
 
 skinparam class {
@@ -18,6 +20,6 @@ Portfolio "1" *-- "*" Project
 Project "1" *-- "*" Task
 Report . Project
 Project "*" - "1" Manager
-Task "*" -- "0..1" Member
+Task "*" - "0..1" Member
 
 @enduml

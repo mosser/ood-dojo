@@ -13,22 +13,29 @@ activate P
 create "m: Manager" as Mgr #D3D3D3
 P -> Mgr: new(mgrId)
 activate Mgr
-Mgr -> Mgr: check()
 Mgr --> P: m
 deactivate Mgr
 
 create "p: Project" as Proj
 P -> Proj: new(m, pName)
+activate Proj
 Proj --> P: p
-
+deactivate Proj
 P -> P: addToPortfolio(p)
 activate P
 P -> Proj: save()
 activate Proj
+Proj -> Mgr: check()
+note left #D3D3D3
+  Contact HR
+  External 
+  System
+end note
+activate Mgr
+Mgr --> Proj: true
+deactivate Mgr
 Proj --> P: true
 deactivate Proj
-deactivate P
 P --> M: true
 deactivate P
-
 @enduml
